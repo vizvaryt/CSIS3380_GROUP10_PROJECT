@@ -7,6 +7,20 @@ router.route("/").get((req, res) => {
     .catch((err) => res.status(400).json("Error: " + err));
 });
 
+/*
+{
+    "title": "appointment2",
+    "doctor": "Liam Wang",
+    "patient": "Olivia Doe",
+    "date": "04/04/2023",
+    "time": "10:00",
+    "type": "check",
+    "office": "123 Main St",
+    "room": "02",
+    "insurance": "false"
+}
+*/
+
 router.route("/add").post((req, res) => {
   const title = req.body.title;
   const doctor = req.body.doctor;
@@ -46,6 +60,7 @@ router.route("/:id").get((req, res) => {
 });
 
 router.route("/delete/:id").delete((req, res) => {
+  console.log("try delete " + req.params.id)
   Appointment.findByIdAndDelete(req.params.id)
     .then(() => res.json("Appointment deleted."))
     .catch((err) => res.status(400).json("Error: " + err));
