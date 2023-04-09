@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import axiox from 'axios';
+import axios from 'axios';
 
 const Appointment = props => (
     <div class="appointmentBox">
@@ -24,7 +24,7 @@ export default class AppointmentList extends Component {
     }
 
     componentDidMount() {
-        axiox.get('http://localhost:5000/appointments/')
+        axios.get('https://appointmentapi-lm5l.onrender.com/appointments/')
             .then(response => {
                 this.setState({ appointments: response.data})
             })
@@ -34,7 +34,7 @@ export default class AppointmentList extends Component {
     }
 
     deleteAppointment(id) {
-        axiox.delete('http://localhost:5000/appointments/delete/' + id)
+        axios.delete('https://appointmentapi-lm5l.onrender.com/appointments/delete/' + id)
             .then(response => console.log(response.data));
         this.setState({
             appointments: this.state.appointments.filter(el => el._id !== id)
