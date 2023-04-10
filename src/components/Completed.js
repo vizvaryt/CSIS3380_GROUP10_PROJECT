@@ -19,16 +19,14 @@ const Appointment = props => (
         <button class="button" onClick={() => { props.deleteAppointment(props.appointment._id)}}>
             Delete Appointment
         </button>
-        <button class="button" onClick={() => { props.completeAppointment(props.appointment._id)}}>
-            Complete Appointment
-        </button>
     </div>
 )
 
-export default class AppointmentList extends Component {
+export default class CompletedAppointments extends Component {
     constructor(props) {
         super(props);
         this.deleteAppointment = this.deleteAppointment.bind(this)
+        this.onChangeDate = this.onChangeDate.bind(this);
         this.state = {
             appointments: [],
             date: new Date()
@@ -53,25 +51,23 @@ export default class AppointmentList extends Component {
         })
     }
 
-    //FIX ME PLEASE
-    completeAppointment(id) {
-        axios.post("https://appointmentapi-lm5l.onrender.com/appointments/complete" + id).then((res) => { 
-            console.log(res)
-            window.location = "/";
-        });
-    }
-
     AppointmentList() {
         return this.state.appointments.map(currentAppointment => {
             return <Appointment appointment={currentAppointment} 
             deleteAppointment = {this.deleteAppointment}
-            completeAppointment = {this.completeAppointment}
             />;
         })
     }
 
+    onChangeDate(date) {
+        const options = {  year: 'numeric', month: 'numeric', day: 'numeric' };
+        this.setState({
+          date: date.toLocaleDateString(undefined, options),
+        });
+      }
+
     render() {
-        const AppointmentList = () => {
+        const CompletedAppointments = () => {
             const [searchTerm, setSearchTerm] = useState("");
             const [selectedDate, setSelectedDate] = useState(null);
             var parsedDate = null
@@ -85,7 +81,7 @@ export default class AppointmentList extends Component {
                         (appointment.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
                         appointment.doctor.toLowerCase().includes(searchTerm.toLowerCase()) ||
                         appointment.patient.toLowerCase().includes(searchTerm.toLowerCase())) &&
-                        (selectedDate === null || appointment.date?.substring(0, 10) === parsedDate) && appointment.completed === false
+                        (selectedDate === null || appointment.date?.substring(0, 10) === parsedDate) && appointment.completed === true
                     );
                 }
             );
@@ -112,9 +108,8 @@ export default class AppointmentList extends Component {
                     {filteredAppointments.map(currentAppointment => {
                         return (
                             <Appointment
-                                appointment = {currentAppointment}
-                                deleteAppointment = {this.deleteAppointment}
-                                completeAppointment = {this.completeAppointment}
+                                appointment={currentAppointment}
+                                deleteAppointment={this.deleteAppointment}
                             />
                         );
                     })}
@@ -122,6 +117,6 @@ export default class AppointmentList extends Component {
             );
         };
 
-        return <AppointmentList />;
+        return <CompletedAppointments />;
       }
 }

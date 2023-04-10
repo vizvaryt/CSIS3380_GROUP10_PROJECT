@@ -4,17 +4,16 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 
 import Home from './Home';
 import AppointmentList from './Appointment-list';
-import AddAppoitement from './Add';
-
-
-var testArray = ["appointment 1", "appointment 2", "appointment 3"]
+import AddAppointment from './Add';
+import CompletedAppointments from './Completed'
 
 const App = () => (
     <div className="container">
       <Home />
       <Routes>
         <Route path="/" element={<AppointmentList />} />
-        <Route path="/create" element={<AddAppoitement />} />
+        <Route path="/create" element={<AddAppointment />} />
+        <Route path="/completed" element={<CompletedAppointments />} />
       </Routes>
     </div>
 );

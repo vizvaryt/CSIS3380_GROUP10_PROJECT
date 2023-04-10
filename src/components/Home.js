@@ -10,10 +10,13 @@ class Home extends Component {
         <div className="collpase navbar-collapse">
           <ul className="navbar-nav mr-auto">
           <li className="navbar-item">
-          <Link to="/" className="nav-link">Appointments</Link>
+          <Link to="/" className="nav-link">All Appointments</Link>
           </li>
           <li className="navbar-item">
-          <Link to="/create" className="nav-link">Add An Appointments</Link> 
+          <Link to="/create" className="nav-link">Add Appointments</Link> 
+          </li>
+          <li className="navbar-item">
+          <Link to="/completed" className="nav-link">Completed Appointments</Link> 
           </li>
           </ul>
         </div>

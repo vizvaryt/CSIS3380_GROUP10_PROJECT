@@ -5,7 +5,7 @@ import "react-datepicker/dist/react-datepicker.css";
 
 
 
-export default class AddAppoitement extends Component {
+export default class AddAppointement extends Component {
     constructor(props) {
         super(props)
         //this.onChangeActivity = this.onChangeActivity.bind(this);
