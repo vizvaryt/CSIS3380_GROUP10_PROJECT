@@ -53,9 +53,9 @@ export default class AppointmentList extends Component {
         })
     }
 
-    //FIX ME PLEASE
+    
     completeAppointment(id) {
-        axios.post("https://appointmentapi-lm5l.onrender.com/appointments/complete" + id).then((res) => { 
+        axios.post("https://appointmentapi-lm5l.onrender.com/appointments/complete/" + id).then((res) => { 
             console.log(res)
             window.location = "/";
         });
