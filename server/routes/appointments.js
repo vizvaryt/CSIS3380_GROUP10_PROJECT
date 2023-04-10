@@ -80,4 +80,16 @@ router.route("/update/:id").post((req, res) => {
     .catch((err) => res.status(400).json("Error: " + err));
 });
 
+router.route("/complete/:id").post((req, res) => {
+  Appointment.findById(req.params.id)
+    .then((Appointments) => {
+      Appointments.completed = true;
+      Appointments
+        .save()
+        .then(() => res.json("Appointment updated!"))
+        .catch((err) => res.status(400).json("Error: " + err));
+    })
+    .catch((err) => res.status(400).json("Error: " + err));
+});
+
 module.exports = router;
