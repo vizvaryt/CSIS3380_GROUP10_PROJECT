@@ -1,18 +1,23 @@
-import React, {Component} from "react";
+import React, {Component, useState} from "react";
 import axios from 'axios';
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+
+
 
 export default class AddAppoitement extends Component {
     constructor(props) {
         super(props)
-
         //this.onChangeActivity = this.onChangeActivity.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
+        this.handleDateChange = this.handleDateChange.bind(this);  
         this.state = {
             title: "",
             doctor: "",
             patient: "",
-            date: "",
+            datepicker: new Date(),
+            date: new Date(),
             time: "09:00",
             type: "General",
             office: "",
@@ -29,6 +34,15 @@ export default class AddAppoitement extends Component {
           [name]: value
         });
       }
+
+      handleDateChange(date) {  
+        const options = {  year: 'numeric', month: 'numeric', day: 'numeric' };
+        this.setState({  
+            datepicker: date,
+            date: date.toLocaleDateString(undefined, options),
+            time: date.toTimeString().substring(0,5)
+        })
+      }  
 
     onSubmit(e) {
         e.preventDefault();
@@ -65,6 +79,7 @@ export default class AddAppoitement extends Component {
             return <option>{currentClinic.fields.businessname}</option>;
         })
     }
+    
 
     render() {
         return(
@@ -85,7 +100,11 @@ export default class AddAppoitement extends Component {
                 </div>
                 <div class="form-group">
                     <label for="date">Date</label>
-                    <input type="text" class="form-control" id="date" value={this.state.date} onChange={this.handleInputChange} placeholder="Date"/>
+                    <DatePicker
+                    showTimeSelect
+                    selected={this.state.datepicker}
+                    onChange={this.handleDateChange}
+                    />
                 </div>
                 <div class="form-group">
                     <label for="type">Appointment type</label>
