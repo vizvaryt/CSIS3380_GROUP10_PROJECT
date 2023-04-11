@@ -40,3 +40,21 @@ body {
     height: 30px;
     width: 175px;
 }
+
+.card-fadeout{
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    -webkit-animation: fadeout .3s linear forwards;
+    animation: fadeout .3s linear forwards;
+}
+
+@-webkit-keyframes fadeout {
+    0% { opacity: 1; }
+    100% { opacity: 0; }
+}
+    
+@keyframes fadeout {
+    0% { opacity: 1; }
+    100% { opacity: 0; }
+}

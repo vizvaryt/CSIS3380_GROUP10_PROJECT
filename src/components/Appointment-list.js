@@ -3,8 +3,18 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import axios from 'axios';
 
-const Appointment = props => (
-    <div class="appointmentBox">
+function Appointment(props) {
+    const [isFadingOut, setIsFadingOut] = useState(false);
+    const fadeOut = (cb) => {
+        setIsFadingOut(true);
+        //cb();
+    };
+    const handleRemoveCard = (id) => {
+        props.deleteAppointment(id)
+        setIsFadingOut(false);
+    };
+    return(
+    <div className={isFadingOut ? 'card-fadeout' : 'appointmentBox'}>
         <b>{props.appointment.title}</b><br></br>
         Doctor: {props.appointment.doctor}<br></br>
         Patient: {props.appointment.patient}<br></br>
@@ -15,15 +25,15 @@ const Appointment = props => (
         Room Number: {props.appointment.room} <br></br>
         Covered by Insurance? {" "}
         {props.appointment.insurance ? "Yes" : "No"}<br></br>
-        
-        <button class="button" onClick={() => { props.deleteAppointment(props.appointment._id)}}>
+        <button class="button" onClick={() => { fadeOut(setTimeout(() => handleRemoveCard(props.appointment._id), 300))}}>
             Delete Appointment
         </button>
         <button class="button" onClick={() => { props.completeAppointment(props.appointment._id)}}>
             Complete Appointment
         </button>
     </div>
-)
+    )
+}
 
 export default class AppointmentList extends Component {
     constructor(props) {
@@ -53,7 +63,6 @@ export default class AppointmentList extends Component {
         })
     }
 
-    
     completeAppointment(id) {
         axios.post("https://appointmentapi-lm5l.onrender.com/appointments/complete/" + id).then((res) => { 
             console.log(res)
