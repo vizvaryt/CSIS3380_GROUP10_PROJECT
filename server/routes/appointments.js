@@ -70,8 +70,14 @@ router.route("/update/:id").post((req, res) => {
   Appointment.findById(req.params.id)
     .then((Appointments) => {
       Appointments.title = req.body.title;
-      Appointments.author = req.body.author;
-
+      Appointments.dotor = req.body.doctor;
+      Appointments.patient = req.body.patient;
+      Appointments.office = req.body.office;
+      Appointments.date = req.body.date;
+      Appointments.time = req.body.time;
+      Appointments.type = req.body.type;
+      Appointments.office = req.body.office;
+      Appointments.insurance = req.body.insurance;
       Appointments
         .save()
         .then(() => res.json("Appointment updated!"))

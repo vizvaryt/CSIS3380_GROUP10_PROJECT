@@ -22,7 +22,13 @@ body {
     border-radius: 10px;
     height: 320px;
     width: 340px;
+    cursor: pointer;
 }
+
+.appointmentBox:hover {
+    transform: scale(1.1); 
+    background-color: rgb(188, 204, 223);
+  }
 .button {
     margin-top: 10px;
     margin-left: 10px;
