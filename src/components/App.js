@@ -11,7 +11,9 @@ import UpdateAppointment from './Update';
 
 const App = () => (
     <div className="container">
+      <div id="header">
       <Home />
+      </div>
       <Routes>
         <Route path="/" element={<AppointmentList />} />
         <Route path="/create" element={<AddAppointment />} />

@@ -64,7 +64,8 @@ function Appointment(props) {
         
     <div className={isFadingOut ? 'card-fadeout' : 'appointmentBox'} >
         <div onClick={openModal}>
-            <b>{props.appointment.title}</b><br></br>
+            {props.appointment.title}<br></br>
+            <hr></hr>
             Doctor: {props.appointment.doctor}<br></br>
             Patient: {props.appointment.patient}<br></br>
             Date: {props.appointment.date.substring(0, 10)} <br></br>
@@ -141,8 +142,8 @@ export default class AppointmentList extends Component {
     }
 
     deleteAppointment(id) {
-        /*axios.delete('https://appointmentapi-lm5l.onrender.com/appointments/delete/' + id)
-            .then(response => console.log(response.data));*/
+        axios.delete('https://appointmentapi-lm5l.onrender.com/appointments/delete/' + id)
+            .then(response => console.log(response.data));
         this.setState({
             appointments: this.state.appointments.filter(el => el._id !== id)
         })
@@ -201,6 +202,7 @@ export default class AppointmentList extends Component {
                             onChange={date => setSelectedDate(date)}
                             placeholderText="Select date"
                             dateFormat="yyyy-MM-dd"
+                            popperPlacement="auto"
                             isClearable
                         />
                     </div>

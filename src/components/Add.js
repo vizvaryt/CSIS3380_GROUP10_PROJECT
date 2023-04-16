@@ -83,7 +83,7 @@ export default class AddAppointement extends Component {
 
     render() {
         return(
-            <div>
+            <div className="addAppointmentBox">
                 <h3>Add An Appointment</h3>
                 <form onSubmit={this.onSubmit}>
                 <div class="form-group">
