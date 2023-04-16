@@ -70,7 +70,7 @@ router.route("/update/:id").post((req, res) => {
   Appointment.findById(req.params.id)
     .then((Appointments) => {
       Appointments.title = req.body.title;
-      Appointments.dotor = req.body.doctor;
+      Appointments.doctor = req.body.doctor;
       Appointments.patient = req.body.patient;
       Appointments.office = req.body.office;
       Appointments.date = req.body.date;
