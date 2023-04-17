@@ -4,7 +4,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 
-export default class AddAppointement extends Component {
+export default class UpdateAppointement extends Component {
     
     constructor(props) {
         super(props)
